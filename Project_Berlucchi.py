@@ -1,9 +1,8 @@
 
 import random
 import pygame
-import sys
 
-N_TRIALS = 3  # total number of trials
+
 MIN_WAIT_TIME = 2000
 MAX_WAIT_TIME = 3000
 MAX_RESPONSE_DELAY = 380
@@ -11,10 +10,7 @@ RESULT_FILE = 'reaction_times.csv'
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-GRAY = (127, 127, 127)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
+
 
 W, H = 1000, 1000 #Size of the graphic window
 center_x, center_y = W/2, H/2 
@@ -31,6 +27,7 @@ def clear_screen(screen):
 
 def display_instruction(screen, x, y):
     myfont = pygame.font.SysFont(pygame.font.get_fonts()[0], 32)
+
     line1 = myfont.render("A square patch of light will flash at irregular time intervals.", 1, pygame.Color('white'))
     if key == pygame.K_q:
         line2 = myfont.render("Press the key a as soon as possible when you see it !", 1, pygame.Color('white'))
@@ -100,8 +97,6 @@ def save_data(waiting_times, reaction_times, filename=RESULT_FILE):
 
 ##### main
 
-#side = sys.argv[1]
-#print(side)
 
 
 pygame.init()
@@ -112,7 +107,7 @@ key = random.choice([pygame.K_q, pygame.K_p])
 waiting_times = []
 reaction_times = []
 
-display_instruction(screen, 10, center_y)
+display_instruction(screen, 10, center_y/2)
 wait_for_keypress()
 clear_screen(screen)
 
@@ -121,7 +116,8 @@ pygame.time.delay(2000)
 
 trial_number= 1 
 left_or_right = random.choice([1, -1]) #stimulus lateralizatioon
-angle = [4.3588989435, 100.8, 500.166] #distance from the center
+angle = [5, 200, 400, 5, 200, 400, 5, 200, 400, 5, 200, 400, 5, 200, 400] #distance from the center
+random.shuffle(angle)
 for angle_choice in angle:
     clear_screen(screen)
 
